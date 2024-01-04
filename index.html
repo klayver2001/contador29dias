@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Dias</title>
+  <style>
+    body {
+      font-family: "Osvald", Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #F6F930;
+      color: #000000;
+    }
+
+    h1 {
+      color: #000000;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    #contador {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #000000;
+      background-color: #F0E68C; /* Nova cor de destaque que combina com o amarelo da página */
+      padding: 15px;
+      border-radius: 10px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contador de Dias</h1>
+  <label for="data">Selecione uma data:</label>
+  <input type="date" id="data" onchange="atualizarContador()">
+  <p id="contador"></p>
+
+  <script>
+    // Função para calcular a data após um número específico de dias
+    function calcularDataFutura(data, dias) {
+      const dataAtual = new Date(data);
+      dataAtual.setDate(dataAtual.getDate() + dias);
+      return dataAtual.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    }
+
+    // Função principal para atualizar o contador
+    function atualizarContador() {
+      const dataSelecionada = document.getElementById('data').value;
+
+      if (dataSelecionada) {
+        const dataFutura = calcularDataFutura(dataSelecionada, 29);
+        const contadorElemento = document.getElementById('contador');
+        contadorElemento.textContent = `A data 29 dias após ${dataSelecionada} será em ${dataFutura}.`;
+      }
+    }
+  </script>
+
+</body>
+</html>
